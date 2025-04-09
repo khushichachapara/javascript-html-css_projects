@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link rel="stylesheet" href="../styles.css" />
+    <title>random task for learn events & async task</title>
+    <style>
+      h1 {
+        font-size: 2rem;
+        text-align: center;
+        margin-top: 50px;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        padding: 0.8rem;
+        gap: 0.5rem;
+        border-bottom: solid 1px #aaa;
+        background-color: #eee;
+      }
+      
+      nav a {
+        display: inline-block;
+        min-width: 9rem;
+        padding: 0.5rem;
+        border-radius: 0.2rem;
+        border: solid 1px rgb(22, 22, 22);
+        text-align: center;
+        text-decoration: none;
+        color: #1b1b1b;
+      }
+      
+      nav a[aria-current="page"] {
+        color: white;
+        background-color: rgba(149, 121, 241, 0.8);
+      }
+      
+      .start {
+        display: block;
+        margin: 0 auto;
+        margin-top: 20px;
+        padding: 10px 20px;
+
+        border: none;
+        cursor: pointer;
+        background-color: rgb(11, 168, 236);
+      }
+      .stop {
+        display: block;
+        margin: 0 auto;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: red;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body style="background-color: black ;color: white">
+    <nav>
+      <a href="/" aria-current="page">Home</a>
+      <a target="_blank" href="https://github.com/khushichachapara">Github</a>
+    </nav>
+    <h1 >
+      Time in MiliSecond : <span class="title"></span>
+    </h1>
+    <button class="start">start</button>
+    <button class="stop">stop</button>
+    <script>
+      let IntervalId;
+
+      const title = document.querySelector(".title");
+      const start = document.querySelector(".start");
+      const stop = document.querySelector(".stop");
+
+      function startInterval() {
+        if (!IntervalId) {
+          IntervalId = setInterval(function () {
+            title.textContent = new Date().getTime();
+          }, 1000);
+        }
+      }
+
+      function stopInterval() {
+        clearInterval(IntervalId);
+        IntervalId = null;
+        console.log("stop");
+      }
+
+      start.addEventListener("click", startInterval);
+      stop.addEventListener("click", stopInterval);
+    </script>
+  </body>
+</html>
